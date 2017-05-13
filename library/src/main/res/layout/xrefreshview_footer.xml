@@ -35,10 +35,12 @@
 
     <ProgressBar
         android:id="@+id/xrefreshview_footer_progressbar"
-        style="?android:attr/progressBarStyleSmallInverse"
+        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="23dp"
         android:layout_height="23dp"
         android:layout_centerVertical="true"
         android:layout_marginRight="15dp"
-        android:layout_toLeftOf="@id/xrefreshview_footer_hint_layout"/>
+        android:layout_toLeftOf="@id/xrefreshview_footer_hint_layout"
+        android:indeterminateTint="@color/XRefreshViewProgress"
+        android:indeterminateTintMode="src_atop"/>
 </RelativeLayout>
