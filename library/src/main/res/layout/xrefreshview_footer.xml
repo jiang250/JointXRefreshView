@@ -1,31 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/xrefreshview_footer_content"
-    android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:layout_gravity="center_horizontal"
-    android:background="@android:color/white"
-    android:padding="10dp">
+                android:id="@+id/xrefreshview_footer_content"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/xrefreshview_footer_hint_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/xrefreshview_footer_hint_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/xrefreshview_footer_hint_normal"
+            android:textColor="#666666"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/xrefreshview_footer_click_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/xrefreshview_footer_hint_ready"
+            android:textColor="#666666"
+            android:textSize="12sp"/>
+    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/xrefreshview_footer_progressbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/xrefreshview_footer_hint_textview"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="@string/xrefreshview_footer_hint_normal" />
-
-    <TextView
-        android:id="@+id/xrefreshview_footer_click_textview"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:text="@string/xrefreshview_footer_hint_ready" />
+        style="?android:attr/progressBarStyleSmallInverse"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:layout_toLeftOf="@id/xrefreshview_footer_hint_layout"/>
 </RelativeLayout>
