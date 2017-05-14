@@ -1,4 +1,4 @@
-package com.andview.refreshview.recyclerview;
+package com.handy.refreshview.recyclerview;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
 
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.callback.IFooterCallBack;
-import com.andview.refreshview.utils.LogUtils;
-import com.andview.refreshview.utils.Utils;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.callback.IFooterCallBack;
+import com.handy.refreshview.utils.LogUtils;
+import com.handy.refreshview.utils.Utils;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,9 +23,12 @@ import java.util.List;
  */
 public abstract class BaseRecyclerAdapter<VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
 
+    private final RecyclerViewDataObserver observer = new RecyclerViewDataObserver();
     protected View customLoadMoreView = null;
     protected View customHeaderView = null;
     private boolean isFooterEnable = true;
+    private boolean removeFooter = false;
+    private XRefreshView mParent;
 
     @Override
     public VH onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -58,8 +61,6 @@ public abstract class BaseRecyclerAdapter<VH extends RecyclerView.ViewHolder> ex
             }
         }
     }
-
-    private boolean removeFooter = false;
 
     public void addFooterView() {
         LogUtils.d("test addFooterView");
@@ -128,10 +129,6 @@ public abstract class BaseRecyclerAdapter<VH extends RecyclerView.ViewHolder> ex
         }
     }
 
-    private final RecyclerViewDataObserver observer = new RecyclerViewDataObserver();
-
-    private XRefreshView mParent;
-
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
@@ -143,25 +140,6 @@ public abstract class BaseRecyclerAdapter<VH extends RecyclerView.ViewHolder> ex
                 observer.attach();
                 registerAdapterDataObserver(observer);
             }
-        }
-    }
-
-    /**
-     * Using a custom LoadMoreView
-     *
-     * @param footerView the inflated view
-     */
-    public void setCustomLoadMoreView(View footerView) {
-        if (footerView instanceof IFooterCallBack) {
-            customLoadMoreView = footerView;
-            Utils.removeViewFromParent(customLoadMoreView);
-            if (mParent != null && mParent.getContentView() != null) {
-                mParent.getContentView().initFooterCallBack(this, mParent);
-            }
-            showFooter(customLoadMoreView, false);
-            notifyDataSetChanged();
-        } else {
-            throw new RuntimeException("footerView must be implementes IFooterCallBack!");
         }
     }
 
@@ -196,6 +174,25 @@ public abstract class BaseRecyclerAdapter<VH extends RecyclerView.ViewHolder> ex
 
     public View getCustomLoadMoreView() {
         return customLoadMoreView;
+    }
+
+    /**
+     * Using a custom LoadMoreView
+     *
+     * @param footerView the inflated view
+     */
+    public void setCustomLoadMoreView(View footerView) {
+        if (footerView instanceof IFooterCallBack) {
+            customLoadMoreView = footerView;
+            Utils.removeViewFromParent(customLoadMoreView);
+            if (mParent != null && mParent.getContentView() != null) {
+                mParent.getContentView().initFooterCallBack(this, mParent);
+            }
+            showFooter(customLoadMoreView, false);
+            notifyDataSetChanged();
+        } else {
+            throw new RuntimeException("footerView must be implementes IFooterCallBack!");
+        }
     }
 
     @Override

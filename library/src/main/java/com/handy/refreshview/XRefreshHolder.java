@@ -1,4 +1,4 @@
-package com.andview.refreshview;
+package com.handy.refreshview;
 
 public class XRefreshHolder {
 

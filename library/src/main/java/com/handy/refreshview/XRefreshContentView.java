@@ -1,4 +1,4 @@
-package com.andview.refreshview;
+package com.handy.refreshview;
 
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,17 +13,18 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.ScrollView;
 
-import com.andview.refreshview.XRefreshView.XRefreshViewListener;
-import com.andview.refreshview.callback.IFooterCallBack;
-import com.andview.refreshview.listener.OnBottomLoadMoreTime;
-import com.andview.refreshview.listener.OnTopRefreshTime;
-import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
-import com.andview.refreshview.recyclerview.XSpanSizeLookup;
-import com.andview.refreshview.utils.LogUtils;
-import com.andview.refreshview.utils.Utils;
-import com.andview.refreshview.view.XWebView;
+import com.handy.refreshview.callback.IFooterCallBack;
+import com.handy.refreshview.listener.OnBottomLoadMoreTime;
+import com.handy.refreshview.listener.OnTopRefreshTime;
+import com.handy.refreshview.recyclerview.BaseRecyclerAdapter;
+import com.handy.refreshview.recyclerview.XSpanSizeLookup;
+import com.handy.refreshview.utils.LogUtils;
+import com.handy.refreshview.utils.Utils;
+import com.handy.refreshview.view.XWebView;
 
 public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, OnBottomLoadMoreTime {
+    private static final String RECYCLERVIEW_ADAPTER_WARIN = "Recylerview的adapter请继承 BaseRecyclerAdapter,否则不能使用封装的Recyclerview的相关特性";
+    protected LAYOUT_MANAGER_TYPE layoutManagerType;
     private View child;
     private int mTotalItemCount;
     private OnTopRefreshTime mTopRefreshTime;
@@ -31,10 +32,8 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
     private XRefreshView mContainer;
     private OnScrollListener mAbsListViewScrollListener;
     private RecyclerView.OnScrollListener mRecyclerViewScrollListener;
-    private XRefreshViewListener mRefreshViewListener;
+    private XRefreshView.XRefreshViewListener mRefreshViewListener;
     private RecyclerView.OnScrollListener mOnScrollListener;
-    protected LAYOUT_MANAGER_TYPE layoutManagerType;
-
     private int mVisibleItemCount = 0;
     private int previousTotal = 0;
     private int mFirstVisibleItem;
@@ -49,6 +48,17 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
     private int mPinnedTime;
     private XRefreshHolder mHolder;
     private XRefreshView mParent;
+    private boolean mSilenceLoadMore = false;
+    private boolean hasIntercepted = false;
+    private boolean mHideFooter = true;
+    private boolean addingFooter = false;
+    private boolean mRefreshAdapter = false;
+    /**
+     * 静默加载时提前加载的item个数
+     */
+    private int mPreLoadCount;
+    private boolean isHideFooterWhenComplete = true;
+    private boolean isForbidLoadMore = true;
 
     public void setParent(XRefreshView parent) {
         mParent = parent;
@@ -67,13 +77,13 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
         child.setLayoutParams(lp);
     }
 
+    public View getContentView() {
+        return child;
+    }
+
     public void setContentView(View child) {
         this.child = child;
         child.setOverScrollMode(ScrollView.OVER_SCROLL_NEVER);
-    }
-
-    public View getContentView() {
-        return child;
     }
 
     public void setHolder(XRefreshHolder holder) {
@@ -100,13 +110,9 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
         }
     }
 
-    private boolean mSilenceLoadMore = false;
-
     public void setSilenceLoadMore(boolean silenceLoadMore) {
         mSilenceLoadMore = silenceLoadMore;
     }
-
-    private boolean hasIntercepted = false;
 
     public void setScrollListener() {
         if (child instanceof AbsListView) {
@@ -194,8 +200,6 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
         }
     }
 
-    private static final String RECYCLERVIEW_ADAPTER_WARIN = "Recylerview的adapter请继承 BaseRecyclerAdapter,否则不能使用封装的Recyclerview的相关特性";
-
     private void setRecyclerViewScrollListener() {
         layoutManagerType = null;
         final RecyclerView recyclerView = (RecyclerView) child;
@@ -272,10 +276,7 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
     }
 
     private boolean isFooterEnable() {
-        if (mState != XRefreshViewState.STATE_COMPLETE && mParent != null && mParent.getPullLoadEnable()) {
-            return true;
-        }
-        return false;
+        return mState != XRefreshViewState.STATE_COMPLETE && mParent != null && mParent.getPullLoadEnable();
     }
 
     private void doNormalLoadMore(BaseRecyclerAdapter adapter, RecyclerView.LayoutManager layoutManager) {
@@ -366,14 +367,8 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
      * @return
      */
     private boolean onRecyclerViewTop() {
-        if (isTop() && mFooterCallBack != null && isFooterEnable()) {
-            return true;
-        }
-        return false;
+        return isTop() && mFooterCallBack != null && isFooterEnable();
     }
-
-    private boolean mHideFooter = true;
-    private boolean addingFooter = false;
 
     public void setLoadComplete(boolean hasComplete) {
         mHasLoadComplete = hasComplete;
@@ -462,14 +457,9 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
         mState = XRefreshViewState.STATE_FINISHED;
     }
 
-    private boolean mRefreshAdapter = false;
-
     private boolean isOnRecyclerViewBottom() {
-        if ((mTotalItemCount - 1 - mPreLoadCount) <= mLastVisibleItemPosition) {
-            return true;
-        }
-        return false;
-//        return isBottom();
+        return (mTotalItemCount - 1 - mPreLoadCount) <= mLastVisibleItemPosition;
+        //        return isBottom();
     }
 
     public void ensureFooterShowWhenScrolling() {
@@ -531,12 +521,6 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
         }
     }
 
-
-    /**
-     * 静默加载时提前加载的item个数
-     */
-    private int mPreLoadCount;
-
     /**
      * 设置静默加载时提前加载的item个数
      *
@@ -548,8 +532,6 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
         }
         mPreLoadCount = count;
     }
-
-    private boolean isHideFooterWhenComplete = true;
 
     protected void setHideFooterWhenComplete(boolean isHideFooterWhenComplete) {
         this.isHideFooterWhenComplete = isHideFooterWhenComplete;
@@ -582,14 +564,14 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
         }
     }
 
+    public XRefreshViewState getState() {
+        return mState;
+    }
+
     private void setState(XRefreshViewState state) {
         if (mState != XRefreshViewState.STATE_COMPLETE) {
             mState = state;
         }
-    }
-
-    public XRefreshViewState getState() {
-        return mState;
     }
 
     public boolean hasLoadCompleted() {
@@ -674,7 +656,7 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
         mRecyclerViewScrollListener = listener;
     }
 
-    public void setXRefreshViewListener(XRefreshViewListener refreshViewListener) {
+    public void setXRefreshViewListener(XRefreshView.XRefreshViewListener refreshViewListener) {
         mRefreshViewListener = refreshViewListener;
     }
 
@@ -709,8 +691,6 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
     public void setOnBottomLoadMoreTime(OnBottomLoadMoreTime bottomLoadMoreTime) {
         this.mBottomLoadMoreTime = bottomLoadMoreTime;
     }
-
-    private boolean isForbidLoadMore = true;
 
     @Override
     public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -843,10 +823,7 @@ public class XRefreshContentView implements OnScrollListener, OnTopRefreshTime, 
             return false;
         } else if (null != child && child instanceof RecyclerView) {
             final RecyclerView recyclerView = (RecyclerView) child;
-            if (recyclerView.getAdapter() != null && !(recyclerView.getAdapter() instanceof BaseRecyclerAdapter)) {
-                return false;
-            }
-            return true;
+            return !(recyclerView.getAdapter() != null && !(recyclerView.getAdapter() instanceof BaseRecyclerAdapter));
         }
         return false;
     }

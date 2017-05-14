@@ -1,6 +1,6 @@
-package com.andview.refreshview.callback;
+package com.handy.refreshview.callback;
 
-import com.andview.refreshview.XRefreshView;
+import com.handy.refreshview.XRefreshView;
 
 public interface IFooterCallBack {
     /**

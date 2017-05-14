@@ -1,8 +1,8 @@
-package com.andview.refreshview.recyclerview;
+package com.handy.refreshview.recyclerview;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.andview.refreshview.XRefreshView;
+import com.handy.refreshview.XRefreshView;
 
 /**
  * Created by 2144 on 2016/8/16.

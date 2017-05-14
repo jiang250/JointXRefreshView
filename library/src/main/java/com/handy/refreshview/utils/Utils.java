@@ -1,4 +1,4 @@
-package com.andview.refreshview.utils;
+package com.handy.refreshview.utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
+import com.handy.refreshview.recyclerview.BaseRecyclerAdapter;
 
 import java.lang.reflect.Method;
 

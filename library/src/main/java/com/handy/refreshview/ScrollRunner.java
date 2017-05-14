@@ -1,4 +1,4 @@
-package com.andview.refreshview;
+package com.handy.refreshview;
 
 /**
  * Created by huxq17 on 2016/12/15.

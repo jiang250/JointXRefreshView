@@ -1,4 +1,4 @@
-package com.andview.refreshview;
+package com.handy.refreshview;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -13,12 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.andview.refreshview.callback.IHeaderCallBack;
-import com.andview.refreshview.utils.Utils;
+import com.handy.refreshview.callback.IHeaderCallBack;
+import com.handy.refreshview.utils.Utils;
 
 import java.util.Calendar;
 
 public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack {
+    private final int ROTATE_ANIM_DURATION = 180;
     private ViewGroup mContent;
     private ImageView mArrowImageView;
     private ImageView mOkImageView;
@@ -27,7 +28,6 @@ public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack 
     private TextView mHeaderTimeTextView;
     private Animation mRotateUpAnim;
     private Animation mRotateDownAnim;
-    private final int ROTATE_ANIM_DURATION = 180;
 
     public XRefreshViewHeader(Context context) {
         super(context);
@@ -45,7 +45,7 @@ public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack 
 
     private void initView(Context context) {
         mContent = (ViewGroup) LayoutInflater.from(context).inflate(
-                R.layout.xrefreshview_header, this);
+                R.layout.handy_xrefreshview_header, this);
         mArrowImageView = (ImageView) findViewById(R.id.xrefreshview_header_arrow);
         mOkImageView = (ImageView) findViewById(R.id.xrefreshview_header_ok);
         mHintTextView = (TextView) findViewById(R.id.xrefreshview_header_hint_textview);
@@ -73,18 +73,18 @@ public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack 
         Resources resources = getContext().getResources();
         if (minutes < 1) {
             refreshTimeText = resources
-                    .getString(R.string.xrefreshview_refresh_justnow);
+                    .getString(R.string.handy_xrefreshview_refresh_justnow);
         } else if (minutes < 60) {
             refreshTimeText = resources
-                    .getString(R.string.xrefreshview_refresh_minutes_ago);
+                    .getString(R.string.handy_xrefreshview_refresh_minutes_ago);
             refreshTimeText = Utils.format(refreshTimeText, minutes);
         } else if (minutes < 60 * 24) {
             refreshTimeText = resources
-                    .getString(R.string.xrefreshview_refresh_hours_ago);
+                    .getString(R.string.handy_xrefreshview_refresh_hours_ago);
             refreshTimeText = Utils.format(refreshTimeText, minutes / 60);
         } else {
             refreshTimeText = resources
-                    .getString(R.string.xrefreshview_refresh_days_ago);
+                    .getString(R.string.handy_xrefreshview_refresh_days_ago);
             refreshTimeText = Utils.format(refreshTimeText, minutes / 60 / 24);
         }
         mHeaderTimeTextView.setText(refreshTimeText);
@@ -107,7 +107,7 @@ public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack 
         mArrowImageView.setVisibility(View.VISIBLE);
         mOkImageView.setVisibility(View.GONE);
         mArrowImageView.startAnimation(mRotateDownAnim);
-        mHintTextView.setText(R.string.xrefreshview_header_hint_normal);
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_normal);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack 
         mArrowImageView.setVisibility(View.VISIBLE);
         mArrowImageView.clearAnimation();
         mArrowImageView.startAnimation(mRotateUpAnim);
-        mHintTextView.setText(R.string.xrefreshview_header_hint_ready);
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_ready);
         mHeaderTimeTextView.setVisibility(View.VISIBLE);
     }
 
@@ -127,7 +127,7 @@ public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack 
         mArrowImageView.setVisibility(View.GONE);
         mOkImageView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
-        mHintTextView.setText(R.string.xrefreshview_header_hint_loading);
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_loading);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack 
         mArrowImageView.setVisibility(View.GONE);
         mOkImageView.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
-        mHintTextView.setText(success ? R.string.xrefreshview_header_hint_loaded : R.string.xrefreshview_header_hint_loaded_fail);
+        mHintTextView.setText(success ? R.string.handy_xrefreshview_header_hint_loaded : R.string.handy_xrefreshview_header_hint_loaded_fail);
         mHeaderTimeTextView.setVisibility(View.GONE);
     }
 

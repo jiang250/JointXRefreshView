@@ -1,4 +1,4 @@
-package com.andview.refreshview;
+package com.handy.refreshview;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -16,6 +16,18 @@ public class XScrollView extends ScrollView {
     private XRefreshView mParent;
     private int mTouchSlop;
     private float lastY;
+    private Runnable mRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (lastT == getScrollY() && !inTouch) {
+                // 如果上次的位置和当前的位置相同，可认为是在空闲状态
+                onScrollListener.onScrollStateChanged(XScrollView.this, OnScrollListener.SCROLL_STATE_IDLE, isBottom());
+                if (mScrollListener != null) {
+                    mScrollListener.onScrollStateChanged(XScrollView.this, OnScrollListener.SCROLL_STATE_IDLE, isBottom());
+                }
+            }
+        }
+    };
 
     public XScrollView(Context context) {
         super(context, null);
@@ -58,19 +70,6 @@ public class XScrollView extends ScrollView {
             mScrollListener.onScroll(l, t, oldl, oldt);
         }
     }
-
-    private Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            if (lastT == getScrollY() && !inTouch) {
-                // 如果上次的位置和当前的位置相同，可认为是在空闲状态
-                onScrollListener.onScrollStateChanged(XScrollView.this, OnScrollListener.SCROLL_STATE_IDLE, isBottom());
-                if (mScrollListener != null) {
-                    mScrollListener.onScrollStateChanged(XScrollView.this, OnScrollListener.SCROLL_STATE_IDLE, isBottom());
-                }
-            }
-        }
-    };
 
     private boolean isBottom() {
         return getScrollY() + getHeight() >= computeVerticalScrollRange();

@@ -1,4 +1,4 @@
-package com.andview.refreshview.recyclerview;
+package com.handy.refreshview.recyclerview;
 
 import android.support.v7.widget.GridLayoutManager;
 
