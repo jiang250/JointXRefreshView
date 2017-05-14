@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="XRefreshViewProgress">#b0bec5</color>
+    <color name="handy_xrefreshview_progress_color">#b0bec5</color>
 </resources>
