@@ -16,8 +16,7 @@
 -->
 
 <resources>
-
-    <declare-styleable name="XRefreshView">
+    <declare-styleable name="Handy_XRefreshView">
         <attr name="isHeightMatchParent" format="boolean" />
         <attr name="isWidthMatchParent" format="boolean" />
         <attr name="autoRefresh" format="boolean" />
