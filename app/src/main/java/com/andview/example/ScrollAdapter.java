@@ -11,8 +11,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.andview.example.ui.raindrop.CustomerFooter;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.XScrollView;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.XScrollView;
 
 public class ScrollAdapter extends PagerAdapter {
 

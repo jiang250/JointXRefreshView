@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.andview.example.R;
 import com.andview.example.ui.raindrop.RainDropHeader;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.XRefreshView.SimpleXRefreshListener;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.XRefreshView.SimpleXRefreshListener;
 
 public class RainDropActivity extends Activity {
     private XRefreshView outView;

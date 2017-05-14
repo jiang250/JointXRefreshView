@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.andview.example.R;
-import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
+import com.handy.refreshview.recyclerview.BaseRecyclerAdapter;
 
 import java.util.List;
 
@@ -65,6 +65,25 @@ public class MultiItemAdapter extends BaseRecyclerAdapter<MultiItemAdapter.Simpl
         return new SimpleAdapterViewHolder(v, viewType, true);
     }
 
+    public void insert(Person person, int position) {
+        insert(list, person, position);
+    }
+
+    public void remove(int position) {
+        remove(list, position);
+    }
+
+    public void clear() {
+        clear(list);
+    }
+
+    public Person getItem(int position) {
+        if (position < list.size())
+            return list.get(position);
+        else
+            return null;
+    }
+
     public class SimpleAdapterViewHolder extends RecyclerView.ViewHolder {
 
         public TextView tvRight, tvLeft;
@@ -91,25 +110,6 @@ public class MultiItemAdapter extends BaseRecyclerAdapter<MultiItemAdapter.Simpl
                 }
             }
         }
-    }
-
-    public void insert(Person person, int position) {
-        insert(list, person, position);
-    }
-
-    public void remove(int position) {
-        remove(list, position);
-    }
-
-    public void clear() {
-        clear(list);
-    }
-
-    public Person getItem(int position) {
-        if (position < list.size())
-            return list.get(position);
-        else
-            return null;
     }
 
 }

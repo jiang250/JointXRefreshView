@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.andview.example.R;
-import com.andview.refreshview.callback.IHeaderCallBack;
+import com.handy.refreshview.callback.IHeaderCallBack;
 
 public class CustomGifHeader extends LinearLayout implements IHeaderCallBack {
     private GifView gifView1;
@@ -54,7 +54,7 @@ public class CustomGifHeader extends LinearLayout implements IHeaderCallBack {
 
     @Override
     public void onStateNormal() {
-        mHintTextView.setText(R.string.xrefreshview_header_hint_normal);
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_normal);
         gifView1.setVisibility(View.VISIBLE);
         gifView2.setVisibility(View.GONE);
         gifView1.setPaused(false);
@@ -63,12 +63,12 @@ public class CustomGifHeader extends LinearLayout implements IHeaderCallBack {
 
     @Override
     public void onStateReady() {
-        mHintTextView.setText(R.string.xrefreshview_header_hint_ready);
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_ready);
     }
 
     @Override
     public void onStateRefreshing() {
-        mHintTextView.setText(R.string.xrefreshview_header_hint_refreshing);
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_refreshing);
         gifView1.setVisibility(View.GONE);
         gifView2.setVisibility(View.VISIBLE);
         gifView1.setPaused(true);
@@ -77,7 +77,7 @@ public class CustomGifHeader extends LinearLayout implements IHeaderCallBack {
 
     @Override
     public void onStateFinish(boolean success) {
-        mHintTextView.setText(success ? R.string.xrefreshview_header_hint_loaded : R.string.xrefreshview_header_hint_loaded_fail);
+        mHintTextView.setText(success ? R.string.handy_xrefreshview_header_hint_loaded : R.string.handy_xrefreshview_header_hint_loaded_fail);
 //        gifView1.setVisibility(View.VISIBLE);
         gifView2.setVisibility(View.GONE);
         gifView2.setPaused(true);

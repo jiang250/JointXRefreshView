@@ -9,17 +9,18 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.andview.example.DensityUtil;
-import com.andview.refreshview.callback.IHeaderCallBack;
+import com.handy.refreshview.callback.IHeaderCallBack;
 
 public class CustomHeader extends View implements IHeaderCallBack {
 
+    // Default background for the progress spinner
+    private static final int CIRCLE_BG_LIGHT = 0xFFFAFAFA;
     private MaterialProgressDrawable mDrawable;
     private float mScale = 1f;
     private int[] colors = {0xFF0000FF, 0xFFFF7F00, 0xFF00FF00
             , 0xFF00FFFF, 0xFFFF0000, 0xFF8B00FF, 0xFFFFFF00};
-    // Default background for the progress spinner
-    private static final int CIRCLE_BG_LIGHT = 0xFFFAFAFA;
     private int mPinnedTime;
+    private boolean isStop = false;
 
     public CustomHeader(Context context, int pinnedTime) {
         super(context);
@@ -120,8 +121,6 @@ public class CustomHeader extends View implements IHeaderCallBack {
             }
         }, mPinnedTime);
     }
-
-    private boolean isStop = false;
 
     @Override
     public void onHeaderMove(double headerMovePercent, int offsetY, int deltaY) {

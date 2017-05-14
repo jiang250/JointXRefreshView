@@ -11,9 +11,9 @@ import android.view.MenuItem;
 import com.andview.example.R;
 import com.andview.example.recylerview.MultiItemAdapter;
 import com.andview.example.recylerview.Person;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.XRefreshView.SimpleXRefreshListener;
-import com.andview.refreshview.XRefreshViewFooter;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.XRefreshView.SimpleXRefreshListener;
+import com.handy.refreshview.XRefreshViewFooter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +28,7 @@ public class ShowFooterRecyclerViewActivity extends Activity {
     LinearLayoutManager layoutManager;
     private boolean isBottom = false;
     private int mLoadCount = 0;
+    private boolean isLeft = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,8 +107,6 @@ public class ShowFooterRecyclerViewActivity extends Activity {
             personList.add(person);
         }
     }
-
-    private boolean isLeft = true;
 
     private int getType() {
         isLeft = !isLeft;

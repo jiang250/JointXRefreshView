@@ -11,8 +11,8 @@ import android.widget.ProgressBar;
 import com.andview.example.DensityUtil;
 import com.andview.example.R;
 import com.andview.example.Utils;
-import com.andview.refreshview.callback.IHeaderCallBack;
-import com.andview.refreshview.utils.LogUtils;
+import com.handy.refreshview.callback.IHeaderCallBack;
+import com.handy.refreshview.utils.LogUtils;
 
 /**
  * Created by Administrator on 2015/8/24.
@@ -83,6 +83,16 @@ public class RainDropHeader extends FrameLayout implements IHeaderCallBack{
     public int getVisiableHeight() {
         return mContainer.getHeight();
     }
+
+    public void setVisiableHeight(int height) {
+        if (height < 0)
+            height = 0;
+        LayoutParams lp = (LayoutParams) mContainer
+                .getLayoutParams();
+        lp.height = height;
+        mContainer.setLayoutParams(lp);
+    }
+
     @Override
     public void onHeaderMove(double offset, int offsetY,int deltaY) {
         int height = deltaY+getVisiableHeight();
@@ -96,14 +106,7 @@ public class RainDropHeader extends FrameLayout implements IHeaderCallBack{
         LogUtils.i( "pullOffset:" + pullOffset+";height="+height+";offsetY="+offsetY+";deltaY="+deltaY+";stretchHeight="+stretchHeight+";readyHeight="+readyHeight);
         mRainDropView.updateComleteState(pullOffset);
     }
-    public void setVisiableHeight(int height) {
-        if (height < 0)
-            height = 0;
-        LayoutParams lp = (LayoutParams) mContainer
-                .getLayoutParams();
-        lp.height = height;
-        mContainer.setLayoutParams(lp);
-    }
+
     @Override
     public void setRefreshTime(long lastRefreshTime) {
 

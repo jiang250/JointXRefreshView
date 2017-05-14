@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.andview.example.DensityUtil;
 import com.andview.example.R;
-import com.andview.refreshview.recyclerview.BaseRecyclerAdapter;
+import com.handy.refreshview.recyclerview.BaseRecyclerAdapter;
 
 import java.util.List;
 
@@ -75,6 +75,13 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         clear(list);
     }
 
+    public Person getItem(int position) {
+        if (position < list.size())
+            return list.get(position);
+        else
+            return null;
+    }
+
     public class SimpleAdapterViewHolder extends RecyclerView.ViewHolder {
 
         public View rootView;
@@ -94,13 +101,6 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
             }
 
         }
-    }
-
-    public Person getItem(int position) {
-        if (position < list.size())
-            return list.get(position);
-        else
-            return null;
     }
 
 }

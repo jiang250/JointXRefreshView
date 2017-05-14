@@ -15,14 +15,15 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.andview.example.R;
-import com.andview.refreshview.callback.IHeaderCallBack;
-import com.andview.refreshview.utils.Utils;
+import com.handy.refreshview.callback.IHeaderCallBack;
+import com.handy.refreshview.utils.Utils;
 
 import java.util.Calendar;
 
 public class AdHeader extends LinearLayout implements IHeaderCallBack {
 
-	private RelativeLayout mContent;
+    private final int ROTATE_ANIM_DURATION = 180;
+    private RelativeLayout mContent;
 	private RelativeLayout mHeaderLayout;
 	private ImageView mArrowImageView;
 	private ImageView mOkImageView;
@@ -31,7 +32,6 @@ public class AdHeader extends LinearLayout implements IHeaderCallBack {
 	private TextView mHeaderTimeTextView;
 	private Animation mRotateUpAnim;
 	private Animation mRotateDownAnim;
-	private final int ROTATE_ANIM_DURATION = 180;
 
 	public AdHeader(Context context) {
 		super(context);
@@ -81,19 +81,19 @@ public class AdHeader extends LinearLayout implements IHeaderCallBack {
 		Resources resources = getContext().getResources();
 		if (minutes < 1) {
 			refreshTimeText = resources
-					.getString(R.string.xrefreshview_refresh_justnow);
-		} else if (minutes < 60) {
+                    .getString(R.string.handy_xrefreshview_refresh_justnow);
+        } else if (minutes < 60) {
 			refreshTimeText = resources
-					.getString(R.string.xrefreshview_refresh_minutes_ago);
-			refreshTimeText = Utils.format(refreshTimeText, minutes);
+                    .getString(R.string.handy_xrefreshview_refresh_minutes_ago);
+            refreshTimeText = Utils.format(refreshTimeText, minutes);
 		} else if (minutes < 60 * 24) {
 			refreshTimeText = resources
-					.getString(R.string.xrefreshview_refresh_hours_ago);
-			refreshTimeText = Utils.format(refreshTimeText, minutes / 60);
+                    .getString(R.string.handy_xrefreshview_refresh_hours_ago);
+            refreshTimeText = Utils.format(refreshTimeText, minutes / 60);
 		} else {
 			refreshTimeText = resources
-					.getString(R.string.xrefreshview_refresh_days_ago);
-			refreshTimeText = Utils.format(refreshTimeText, minutes / 60 / 24);
+                    .getString(R.string.handy_xrefreshview_refresh_days_ago);
+            refreshTimeText = Utils.format(refreshTimeText, minutes / 60 / 24);
 		}
 		mHeaderTimeTextView.setText(refreshTimeText);
 	}
@@ -115,8 +115,8 @@ public class AdHeader extends LinearLayout implements IHeaderCallBack {
 		mArrowImageView.setVisibility(View.VISIBLE);
 		mOkImageView.setVisibility(View.GONE);
 		mArrowImageView.startAnimation(mRotateDownAnim);
-		mHintTextView.setText(R.string.xrefreshview_header_hint_normal);
-	}
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_normal);
+    }
 
 	@Override
 	public void onStateReady() {
@@ -125,8 +125,8 @@ public class AdHeader extends LinearLayout implements IHeaderCallBack {
 		mArrowImageView.setVisibility(View.VISIBLE);
 		mArrowImageView.clearAnimation();
 		mArrowImageView.startAnimation(mRotateUpAnim);
-		mHintTextView.setText(R.string.xrefreshview_header_hint_ready);
-		mHeaderTimeTextView.setVisibility(View.VISIBLE);
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_ready);
+        mHeaderTimeTextView.setVisibility(View.VISIBLE);
 	}
 
 	@Override
@@ -135,16 +135,16 @@ public class AdHeader extends LinearLayout implements IHeaderCallBack {
 		mArrowImageView.setVisibility(View.GONE);
 		mOkImageView.setVisibility(View.GONE);
 		mProgressBar.setVisibility(View.VISIBLE);
-		mHintTextView.setText(R.string.xrefreshview_header_hint_loading);
-	}
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_loading);
+    }
 
 	@Override
 	public void onStateFinish(boolean success) {
 		mArrowImageView.setVisibility(View.GONE);
 		mOkImageView.setVisibility(View.VISIBLE);
 		mProgressBar.setVisibility(View.GONE);
-		mHintTextView.setText(R.string.xrefreshview_header_hint_loaded);
-		mHeaderTimeTextView.setVisibility(View.GONE);
+        mHintTextView.setText(R.string.handy_xrefreshview_header_hint_loaded);
+        mHeaderTimeTextView.setVisibility(View.GONE);
 	}
 
 	@Override

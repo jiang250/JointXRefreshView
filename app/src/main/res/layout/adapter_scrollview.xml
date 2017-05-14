@@ -1,13 +1,12 @@
-<com.andview.refreshview.XRefreshView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xrefreshview="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/custom_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff"
-    xrefreshview:autoRefresh="false" >
+<com.handy.refreshview.XRefreshView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:xrefreshview="http://schemas.android.com/apk/res-auto"
+                                    android:id="@+id/custom_view"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#fff"
+                                    xrefreshview:autoRefresh="false">
 
-    <com.andview.refreshview.XScrollView
+    <com.handy.refreshview.XScrollView
         android:id="@+id/xscrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -18,6 +17,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
         </LinearLayout>
-    </com.andview.refreshview.XScrollView>
+    </com.handy.refreshview.XScrollView>
 
-</com.andview.refreshview.XRefreshView>
+</com.handy.refreshview.XRefreshView>

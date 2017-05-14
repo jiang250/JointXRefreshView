@@ -9,9 +9,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.callback.IFooterCallBack;
-import com.andview.refreshview.utils.Utils;
+import com.andview.example.R;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.callback.IFooterCallBack;
+import com.handy.refreshview.utils.Utils;
 
 public class CustomFooterView extends LinearLayout implements IFooterCallBack {
     private Context mContext;
@@ -39,7 +40,7 @@ public class CustomFooterView extends LinearLayout implements IFooterCallBack {
             show(Utils.isRecyclerViewFullscreen((RecyclerView) childView));
             xRefreshView.enableReleaseToLoadMore(Utils.isRecyclerViewFullscreen((RecyclerView) childView));
         }
-        mClickView.setText(com.andview.refreshview.R.string.xrefreshview_footer_hint_click);
+        mClickView.setText(R.string.handy_xrefreshview_footer_hint_click);
         mClickView.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -53,7 +54,7 @@ public class CustomFooterView extends LinearLayout implements IFooterCallBack {
     public void onStateReady() {
         mHintView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.GONE);
-        mClickView.setText(com.andview.refreshview.R.string.xrefreshview_footer_hint_click);
+        mClickView.setText(R.string.handy_xrefreshview_footer_hint_click);
         mClickView.setVisibility(View.VISIBLE);
 //        show(true);
     }
@@ -70,17 +71,17 @@ public class CustomFooterView extends LinearLayout implements IFooterCallBack {
     public void onReleaseToLoadMore() {
         mHintView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.GONE);
-        mClickView.setText(com.andview.refreshview.R.string.xrefreshview_footer_hint_release);
+        mClickView.setText(R.string.handy_xrefreshview_footer_hint_release);
         mClickView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void onStateFinish(boolean hideFooter) {
         if (hideFooter) {
-            mHintView.setText(com.andview.refreshview.R.string.xrefreshview_footer_hint_normal);
+            mHintView.setText(R.string.handy_xrefreshview_footer_hint_normal);
         } else {
             //处理数据加载失败时ui显示的逻辑，也可以不处理，看自己的需求
-            mHintView.setText(com.andview.refreshview.R.string.xrefreshview_footer_hint_fail);
+            mHintView.setText(R.string.handy_xrefreshview_footer_hint_fail);
         }
         mHintView.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
@@ -89,7 +90,7 @@ public class CustomFooterView extends LinearLayout implements IFooterCallBack {
 
     @Override
     public void onStateComplete() {
-        mHintView.setText(com.andview.refreshview.R.string.xrefreshview_footer_hint_complete);
+        mHintView.setText(R.string.handy_xrefreshview_footer_hint_complete);
         mHintView.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
         mClickView.setVisibility(View.GONE);
@@ -116,16 +117,16 @@ public class CustomFooterView extends LinearLayout implements IFooterCallBack {
 
     private void initView(Context context) {
         mContext = context;
-        ViewGroup moreView = (ViewGroup) LayoutInflater.from(mContext).inflate(com.andview.refreshview.R.layout.xrefreshview_footer, this);
+        ViewGroup moreView = (ViewGroup) LayoutInflater.from(mContext).inflate(R.layout.handy_xrefreshview_footer, this);
         moreView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
-        mContentView = moreView.findViewById(com.andview.refreshview.R.id.xrefreshview_footer_content);
+        mContentView = moreView.findViewById(R.id.xrefreshview_footer_content);
         mProgressBar = moreView
-                .findViewById(com.andview.refreshview.R.id.xrefreshview_footer_progressbar);
+                .findViewById(R.id.xrefreshview_footer_progressbar);
         mHintView = (TextView) moreView
-                .findViewById(com.andview.refreshview.R.id.xrefreshview_footer_hint_textview);
+                .findViewById(R.id.xrefreshview_footer_hint_textview);
         mClickView = (TextView) moreView
-                .findViewById(com.andview.refreshview.R.id.xrefreshview_footer_click_textview);
+                .findViewById(R.id.xrefreshview_footer_click_textview);
     }
 
     @Override

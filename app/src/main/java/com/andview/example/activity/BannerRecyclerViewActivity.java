@@ -16,9 +16,9 @@ import com.andview.example.recylerview.SimpleAdapter;
 import com.andview.example.ui.AdHeader;
 import com.andview.example.ui.BannerViewPager;
 import com.andview.example.ui.CustomGifHeader;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.XRefreshView.SimpleXRefreshListener;
-import com.andview.refreshview.XRefreshViewFooter;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.XRefreshView.SimpleXRefreshListener;
+import com.handy.refreshview.XRefreshViewFooter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +38,7 @@ public class BannerRecyclerViewActivity extends Activity {
     private BannerViewPager mBannerViewPager;
     private int[] mImageIds = new int[]{R.mipmap.test01, R.mipmap.test02,
             R.mipmap.test03};// 测试图片id
+    private View headerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,8 +133,6 @@ public class BannerRecyclerViewActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
-    private View headerView;
 
     private void initViewPager() {
         IndexPageAdapter pageAdapter = new IndexPageAdapter(this, mImageIds);

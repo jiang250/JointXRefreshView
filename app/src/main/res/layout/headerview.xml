@@ -21,7 +21,7 @@
                 android:id="@+id/xrefreshview_header_arrow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/xrefreshview_arrow" />
+                android:src="@drawable/handy_xrefreshview_arrow"/>
 
             <ProgressBar
                 android:id="@+id/xrefreshview_header_progressbar"
@@ -37,7 +37,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:layout_toLeftOf="@+id/right_text"
-            android:src="@drawable/xrefresh_ok" />
+            android:src="@drawable/handy_xrefresh_ok"/>
 
         <RelativeLayout
             android:id="@+id/right_text"
@@ -49,7 +49,7 @@
                 android:id="@+id/xrefreshview_header_hint_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/xrefreshview_header_hint_normal" />
+                android:text="@string/handy_xrefreshview_header_hint_normal"/>
 
             <TextView
                 android:id="@+id/xrefreshview_header_time"
@@ -57,15 +57,15 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/xrefreshview_header_hint_textview"
                 android:layout_marginTop="3dp"
-                android:text="@string/xrefreshview_never_refresh"
+                android:text="@string/handy_xrefreshview_never_refresh"
                 android:textSize="12sp" />
         </RelativeLayout>
     </RelativeLayout>
 
     <com.andview.example.ui.BannerViewPager
         android:id="@+id/index_viewpager"
-        android:layout_below="@id/xrefreshview_header"
         android:layout_width="match_parent"
-        android:layout_height="150dp" />
+        android:layout_height="150dp"
+        android:layout_below="@id/xrefreshview_header"/>
 
 </RelativeLayout>

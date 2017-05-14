@@ -10,19 +10,19 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.andview.example.R;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.XRefreshView.SimpleXRefreshListener;
-import com.andview.refreshview.utils.LogUtils;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.XRefreshView.SimpleXRefreshListener;
+import com.handy.refreshview.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListViewActivity extends Activity {
+    public static long lastRefreshTime;
     private ListView lv;
     private List<String> str_name = new ArrayList<String>();
     private XRefreshView refreshView;
     private ArrayAdapter<String> adapter;
-    public static long lastRefreshTime;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -13,21 +13,23 @@ import com.andview.example.StickylistAdapter;
 import com.andview.example.stickyListHeaders.StickyListHeadersListView;
 import com.andview.example.ui.raindrop.CustomerFooter;
 import com.andview.example.ui.smileyloadingview.SmileyHeaderView;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.listener.OnBottomLoadMoreTime;
-import com.andview.refreshview.listener.OnTopRefreshTime;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.listener.OnBottomLoadMoreTime;
+import com.handy.refreshview.listener.OnTopRefreshTime;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SmileViewActivity extends Activity {
+    private final int mPinnedTime = 1000;
+    int section = 0;
+    String YM = null;
+    String content = null;
     private StickyListHeadersListView stickyLv;
     private List<StickyListBean> list = new ArrayList<StickyListBean>();
     private XRefreshView refreshView;
     private int mTotalItemCount;
     private StickylistAdapter adapter;
-    private final int mPinnedTime = 1000;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,10 +105,6 @@ public class SmileViewActivity extends Activity {
             }
         });
     }
-
-    int section = 0;
-    String YM = null;
-    String content = null;
 
     private void initData() {
 

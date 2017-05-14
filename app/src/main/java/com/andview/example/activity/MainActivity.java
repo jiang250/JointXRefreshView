@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.andview.example.R;
-import com.andview.refreshview.utils.LogUtils;
+import com.handy.refreshview.utils.LogUtils;
 
 public class MainActivity extends Activity {
 

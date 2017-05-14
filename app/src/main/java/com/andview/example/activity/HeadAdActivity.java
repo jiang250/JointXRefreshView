@@ -15,8 +15,8 @@ import com.andview.example.R;
 import com.andview.example.ui.AdHeader;
 import com.andview.example.ui.BannerViewPager;
 import com.andview.example.ui.raindrop.CustomerFooter;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.XRefreshView.SimpleXRefreshListener;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.XRefreshView.SimpleXRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;

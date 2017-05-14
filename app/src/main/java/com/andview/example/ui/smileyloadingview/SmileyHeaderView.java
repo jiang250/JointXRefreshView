@@ -11,12 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 import com.andview.example.R;
-import com.andview.refreshview.callback.IHeaderCallBack;
+import com.handy.refreshview.callback.IHeaderCallBack;
 
 /**
  * Created by 2144 on 2016/8/26.
  */
 public class SmileyHeaderView extends LinearLayout implements IHeaderCallBack {
+    private SmileyLoadingView loadingView;
+    private Scroller mScroller;
+    private boolean hasHeaderMove = false;
+    private AnimalRunnable mRunnable = new AnimalRunnable();
+    private boolean finished = false;
+    private boolean refreshing = false;
+    private int mAngle;
+
     public SmileyHeaderView(Context context) {
         this(context, null);
     }
@@ -35,9 +43,6 @@ public class SmileyHeaderView extends LinearLayout implements IHeaderCallBack {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
-
-    private SmileyLoadingView loadingView;
-    private Scroller mScroller;
 
     private void init(Context context) {
         View contentView = LayoutInflater.from(context).inflate(R.layout.smiley_headerview, this);
@@ -83,33 +88,6 @@ public class SmileyHeaderView extends LinearLayout implements IHeaderCallBack {
         post(mRunnable);
     }
 
-
-    private boolean hasHeaderMove = false;
-
-    private AnimalRunnable mRunnable = new AnimalRunnable();
-
-    public class AnimalRunnable implements Runnable {
-
-        @Override
-        public void run() {
-            int curX = mScroller.getCurrX();
-            if (curX != 0)
-                loadingView.smile(curX);
-            if (mScroller.computeScrollOffset()) {
-                post(this);
-            } else {
-                mAngle = 90;
-                loadingView.mRunning = false;
-                start();
-            }
-        }
-    }
-
-    private boolean finished = false;
-    private boolean refreshing = false;
-
-    private int mAngle;
-
     @Override
     public void onHeaderMove(double headerMovePercent, int offsetY, int deltaY) {
         if (finished || refreshing) return;
@@ -136,5 +114,22 @@ public class SmileyHeaderView extends LinearLayout implements IHeaderCallBack {
     @Override
     public int getHeaderHeight() {
         return getMeasuredHeight();
+    }
+
+    public class AnimalRunnable implements Runnable {
+
+        @Override
+        public void run() {
+            int curX = mScroller.getCurrX();
+            if (curX != 0)
+                loadingView.smile(curX);
+            if (mScroller.computeScrollOffset()) {
+                post(this);
+            } else {
+                mAngle = 90;
+                loadingView.mRunning = false;
+                start();
+            }
+        }
     }
 }

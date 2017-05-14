@@ -13,10 +13,10 @@ import android.view.View;
 import com.andview.example.R;
 import com.andview.example.recylerview.Person;
 import com.andview.example.recylerview.SimpleAdapter;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.XRefreshView.SimpleXRefreshListener;
-import com.andview.refreshview.XRefreshViewFooter;
-import com.andview.refreshview.utils.LogUtils;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.XRefreshView.SimpleXRefreshListener;
+import com.handy.refreshview.XRefreshViewFooter;
+import com.handy.refreshview.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -8,15 +8,15 @@ import android.webkit.WebViewClient;
 
 import com.andview.example.R;
 import com.andview.example.ui.raindrop.CustomerFooter;
-import com.andview.refreshview.XRefreshView;
-import com.andview.refreshview.XRefreshView.SimpleXRefreshListener;
-import com.andview.refreshview.utils.LogUtils;
+import com.handy.refreshview.XRefreshView;
+import com.handy.refreshview.XRefreshView.SimpleXRefreshListener;
+import com.handy.refreshview.utils.LogUtils;
 
 public class WebViewActivity extends Activity {
-	private XRefreshView outView;
 	//项目里不要这么写，最好保存到本地
 	public static long lastRefreshTime;
-	private WebView mWebView;
+    private XRefreshView outView;
+    private WebView mWebView;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
