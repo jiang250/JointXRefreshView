@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
         android:layout_toLeftOf="@+id/right_text"
-        android:src="@drawable/xrefresh_ok"/>
+        android:src="@drawable/handy_xrefresh_ok"/>
 
     <RelativeLayout
         android:id="@+id/right_text"
@@ -54,7 +54,7 @@
             android:layout_width="16dp"
             android:layout_height="23dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/xrefreshview_arrow"/>
+            android:src="@drawable/handy_xrefreshview_arrow"/>
 
         <ProgressBar
             android:id="@+id/xrefreshview_header_progressbar"
