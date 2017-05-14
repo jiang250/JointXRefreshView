@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/xrefreshview_footer_content"
+                android:id="@id/xrefreshview_footer_content"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@android:color/white">
 
     <RelativeLayout
-        android:id="@+id/xrefreshview_footer_hint_layout"
+        android:id="@id/xrefreshview_footer_hint_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
         <TextView
-            android:id="@+id/xrefreshview_footer_hint_textview"
+            android:id="@id/xrefreshview_footer_hint_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -23,7 +23,7 @@
             android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/xrefreshview_footer_click_textview"
+            android:id="@id/xrefreshview_footer_click_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -34,7 +34,7 @@
     </RelativeLayout>
 
     <ProgressBar
-        android:id="@+id/xrefreshview_footer_progressbar"
+        android:id="@id/xrefreshview_footer_progressbar"
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="23dp"
         android:layout_height="23dp"
