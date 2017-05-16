@@ -4,7 +4,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
-                android:background="@android:color/white">
+                android:background="@color/handy_xrefreshview_footer_background">
 
     <RelativeLayout
         android:id="@id/xrefreshview_footer_hint_layout"

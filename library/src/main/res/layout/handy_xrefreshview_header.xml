@@ -3,7 +3,7 @@
                 android:id="@id/xrefreshview_header_text"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="@android:color/white">
+                android:background="@color/handy_xrefreshview_header_background">
 
     <ImageView
         android:id="@id/xrefreshview_header_ok"
