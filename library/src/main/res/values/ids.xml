@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="xrefreshview_header_text" type="id">false</item>
-    <item name="xrefreshview_header_ok" type="id">false</item>
-    <item name="right_text" type="id">false</item>
-    <item name="xrefreshview_header_hint_textview" type="id">false</item>
-    <item name="xrefreshview_header_time" type="id">false</item>
-    <item name="left_images" type="id">false</item>
-    <item name="xrefreshview_header_arrow" type="id">false</item>
-    <item name="xrefreshview_header_progressbar" type="id">false</item>
-    <item name="xrefreshview_footer_content" type="id">false</item>
-    <item name="xrefreshview_footer_hint_textview" type="id">false</item>
-    <item name="xrefreshview_footer_click_textview" type="id">false</item>
-    <item name="xrefreshview_footer_progressbar" type="id">false</item>
-    <item name="xrefreshview_footer_hint_layout" type="id">false</item>
+    <item name="xrefreshview_header_text" type="id"/>
+    <item name="xrefreshview_header_ok" type="id"/>
+    <item name="right_text" type="id"/>
+    <item name="xrefreshview_header_hint_textview" type="id"/>
+    <item name="xrefreshview_header_time" type="id"/>
+    <item name="left_images" type="id"/>
+    <item name="xrefreshview_header_arrow" type="id"/>
+    <item name="xrefreshview_header_progressbar" type="id"/>
+    <item name="xrefreshview_footer_content" type="id"/>
+    <item name="xrefreshview_footer_hint_textview" type="id"/>
+    <item name="xrefreshview_footer_click_textview" type="id"/>
+    <item name="xrefreshview_footer_progressbar" type="id"/>
+    <item name="xrefreshview_footer_hint_layout" type="id"/>
 </resources>
